@@ -14,7 +14,7 @@ e-mail: naf5446@psu.edu
 
 5. Correct any directories in the files you just downloaded to make sure they are set to your own.
 
-6. Upload the files to your working directory.
+6. Upload the files to your working directory, including the ipynb, txt, py, and sh files.
 
 7. Open shell access and create the eeg environment needed for the ipnyb's.
    
@@ -40,5 +40,5 @@ e-mail: naf5446@psu.edu
     
             cd Python
             /storage/work/naf5446/.conda/envs/eeg/bin/python collect_results.py | tee collector_output.txt
-            python make_report_tables.py
+            /storage/work/naf5446/.conda/envs/eeg/bin/python make_report_tables.py
     
