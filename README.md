@@ -1,30 +1,31 @@
-This is the Electronic Supplements for the paper: 
+> ## An Improved Deep Learning Framework for Epileptic Seizure Detection based on Neonatal EEG Signals ##
 
-> ## A Deep Learning Framework for Epileptic Seizure Detection based on Neonatal EEG Signals ##
+by *Nicholas Finn*
 
-by *Artur Gramacki & Jarosław Gramacki*
+e-mail: naf5446@psu.edu
 
-e-mails:  a.gramacki@issi.uz.zgora.pl, j.gramacki@ck.uz.zgora.pl
+1. Start by downloading the data and files from the authors GitHub: https://github.com/artur-gramacki/Epileptic-Seizure-Detection
 
-Paper details: accepted for publication in **Scientific Reports** (https://www.nature.com/articles/s41598-022-15830-2)
+2. Upload the 79 edf and 3 csv files to the edf and annotations directories respectively.
 
-A complete repository consists of:
-1. R and Python source files and complete output results obtained by the authors available at https://drive.google.com/file/d/17PKWhNfjShuZtL-Ozsp8NOjlppNet4Y2/view?usp=sharing (size about 770MB). 
-2. Raw EDF files and CSV annotation files available at https://zenodo.org/record/4940267 (size about 4GB)
+3. Download any needed packages and run the R code. (Can alternatively download them ~17GB via working/inputs/__read_me__.txt)
 
-Download the repository and save all the files on your local or cloud-based disk. Remember not to change the directory structure as this is hard-coded in the R and Python codes. The HDF5 files generated in Step 5 (see ‘Replication of the results’ Section) are very large, as much as about 17GB. Therefore these files have been made available in separate zip archives. As it can be cumbersome to download a file that is 17GB in size, 15 smaller files were prepared. They are available for download at the links given in `working/inputs/__read_me__.txt`. Download these files and load them to the `working/inputs/` directory.
+4. Download EEG_neonatal.ipynb, EEG_calib_done_LSTM.ipynb, collect_results.py, lstm_configs.txt, make_report_tables.py, run_full.sh, and run_lstm.sh from this GitHub.
 
-Then start by:
-1. Reading a short tutorial in [R/Tutorial_on_how_to_run_R_codes.html](https://github.com/artur-gramacki/Epileptic-Seizure-Detection/blob/main/Tutorial_on_how_to_run_R_codes.html)
-2. Become familiar with the contents of the [Python/EEG_neonatal.ipynb](https://github.com/artur-gramacki/Epileptic-Seizure-Detection/blob/main/EEG_neonatal.ipynb) Jupyter notebook. 
+5. Correct any directories in the files you just downloaded to make sure they are set to your own.
 
-Notes:
-- To familiarize yourself with the `Python/EEG_neonatal.ipynb` notebook, we suggest that you first run it with the `COMPLETE_CALCULATIONS` global variable set to `False`. Leave the other global variables unchanged. 
+6. Upload the files to your working directory.
 
-- If you are working in [Google Colab](https://colab.research.google.com) set `GOOGLE_COLAB` global variable to `True`, otherwise set it to `False`. If `GOOGLE_COLAB = True` set also a correct value for `MOUNT_POINT` global variable.
+7. Open shell access and create the eeg environment needed for the ipnyb's.
+conda create -n eeg python=3.11 -y
+conda activate eeg
+pip install "numpy==1.26.4" "scipy==1.13.1" "pandas==2.2.2" "scikit-learn==1.5.2" "matplotlib==3.8.4" \
+            "h5py==3.14.0" "tensorflow==2.20.0" "keras==3.10.0" "tensorboard==2.20.0" "silence-tensorflow==1.2.3" \
+            jupyter nbconvert ipykernel
+python -m ipykernel install --user --name eeg
 
-- If `COMPLETE_CALCULATIONS = False` only two `HDF5` files (`working\inputs\expert_A_1sec_1chunk_64Hz.hdf5` and `working\inputs\expert_CC_10sec_20chunk_64Hz.hdf5`) are required and the files are already uploaded at the repository mentioned above. If `COMPLETE_CALCULATIONS = True` all 90 HDF5 files must be loaded into the `working/inputs/` directory.
+8. Run the baseline CNN model using run_full.sh.
 
-- Then you can safely run all the code cells (`Ctrl+F9` in [Google Colab](https://colab.research.google.com)).
+9. Run the CNN+LSTM model runs.
 
-In case of problems, the authors declare the necessary help for potential researchers.
+10. Collect results.
