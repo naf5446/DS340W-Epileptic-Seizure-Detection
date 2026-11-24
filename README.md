@@ -17,15 +17,23 @@ e-mail: naf5446@psu.edu
 6. Upload the files to your working directory.
 
 7. Open shell access and create the eeg environment needed for the ipnyb's.
-conda create -n eeg python=3.11 -y
-conda activate eeg
-pip install "numpy==1.26.4" "scipy==1.13.1" "pandas==2.2.2" "scikit-learn==1.5.2" "matplotlib==3.8.4" \
-            "h5py==3.14.0" "tensorflow==2.20.0" "keras==3.10.0" "tensorboard==2.20.0" "silence-tensorflow==1.2.3" \
-            jupyter nbconvert ipykernel
-python -m ipykernel install --user --name eeg
+            conda create -n eeg python=3.11 -y
+            conda activate eeg
+            pip install "numpy==1.26.4" "scipy==1.13.1" "pandas==2.2.2" "scikit-learn==1.5.2" "matplotlib==3.8.4" \
+                        "h5py==3.14.0" "tensorflow==2.20.0" "keras==3.10.0" "tensorboard==2.20.0" "silence-tensorflow==1.2.3" \
+                        jupyter nbconvert ipykernel
+            python -m ipykernel install --user --name eeg
 
-8. Run the baseline CNN model using run_full.sh.
+8. Go to your working directory and run the baseline CNN model using run_full.sh.
+            sbatch run_full.sh
 
 9. Run the CNN+LSTM model runs.
+            sbatch --array=0-3 run_lstm.sh
+            sbatch --array=4-6 --time=02:30:00 --export=ALL,LSTM_KFOLD=1 run_lstm.sh
+            sbatch --array=4 --time=01:30:00 --export=ALL,RUN_CNN_LSTM=0,RUN_CNN_ADAM_CONTROL=1,LSTM_KFOLD=1 run_lstm.sh
 
 10. Collect results.
+            cd Python
+            python collect_results.py
+            python make_report_tables.py
+    
