@@ -34,6 +34,6 @@ e-mail: naf5446@psu.edu
 
 10. Collect results.
             cd Python
-            python collect_results.py
+            /storage/work/naf5446/.conda/envs/eeg/bin/python collect_results.py | tee collector_output.txt
             python make_report_tables.py
     
